@@ -90,7 +90,11 @@ def runtimes():
 
 def available_runtimes():
     """return a dictionary of all supported JavaScript runtimes which is usable"""
-    return dict((name, runtime) for name, runtime in _runtimes.items() if runtime.is_available())
+    return {
+        name: runtime
+        for name, runtime in _runtimes.items()
+        if runtime.is_available()
+    }
 
 
 def _auto_detect():

@@ -44,14 +44,11 @@ def main():
 
     context = runtime.compile("\n".join(codes))
     if opts.expr:
-        if isinstance(opts.expr, bytes):
-            expr = opts.expr.decode()
-        else:
-            expr = opts.expr
+        expr = opts.expr.decode() if isinstance(opts.expr, bytes) else opts.expr
         sys.stdout.write(repr(context.eval(expr)) + "\n")
     else:
         ret = context.eval(sys.stdin.read())
         sys.stdout.write(repr(ret) + "\n")
 
-if "__main__" == __name__:
+if __name__ == "__main__":
     main()
